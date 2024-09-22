@@ -9,7 +9,7 @@ import { PredefinedHoverArea } from '../_components/cards/hover-area';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
-  checkHandSize = (cards: X[]) => cards.length <= frosthavenClass.handSize,
+  checkHandSize = (cards: X[]) => cards.length == frosthavenClass.handSize,
   selectedCardComponent = SelectedCards,
 }: {
   frosthavenClass: FrosthavenClass<X>;
@@ -29,7 +29,7 @@ export function SelectCards<X extends Card>({
 
   const selectCard = (card: X) => {
     const newSelectedCards = [...selectedCards, card];
-    if (!selectedCards.includes(card) && checkHandSize(newSelectedCards)) {
+    if (!selectedCards.includes(card)) {
       setSelectedCards(newSelectedCards);
     }
   };
@@ -43,8 +43,10 @@ export function SelectCards<X extends Card>({
   };
 
   const validateSelection = () => {
-    selectCards(selectedCards);
-    router.push('/play');
+    if (checkHandSize(selectedCards)) {
+      selectCards(selectedCards);
+      router.push('/play');
+    }
   }
 
   return (<div className='p-4 flex flex-row'>

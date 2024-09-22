@@ -18,8 +18,8 @@ export default function SelectCardPage() {
     ? <SelectCards
       frosthavenClass={selectedClass}
       checkHandSize={(cards: GeminateCard[]) => (
-        cards.filter((card) => card.form === GeminateForm.melee).length <= selectedClass.handSize
-        && cards.filter((card) => card.form === GeminateForm.ranged).length <= selectedClass.handSize
+        cards.filter((card) => card.form === GeminateForm.melee).length == selectedClass.handSize
+        && cards.filter((card) => card.form === GeminateForm.ranged).length == selectedClass.handSize
       )}
       selectedCardComponent={SelectedGeminateCards}
     />
